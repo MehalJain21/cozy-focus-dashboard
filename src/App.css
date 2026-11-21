@@ -1,0 +1,815 @@
+
+/* Main Layout */
+.app {
+  display: flex;
+  min-height: 100vh;
+  background: var(--background);
+  padding: 24px;
+  gap: 24px;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 245px;
+  min-height: calc(100vh - 48px);
+  background: var(--card);
+  border-radius: 24px;
+  padding: 30px 22px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 5px 25px rgba(64, 55, 71, 0.04);
+}
+
+.sidebar h2 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+  color: var(--purple);
+  margin-bottom: 45px;
+}
+
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sidebar nav a {
+  padding: 13px 15px;
+  border-radius: 12px;
+  color: #827889;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.sidebar nav a:hover,
+.sidebar nav a.active {
+  background: var(--lavender);
+  color: var(--purple);
+}
+
+.sidebar-note {
+  margin-top: auto;
+  color: var(--purple);
+  font-size: 13px;
+}
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  min-width: 0;
+  padding: 15px 10px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 35px;
+}
+
+.header p {
+  color: var(--purple);
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.header h1 {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(20px, 3vw, 28px);
+  font-weight: 600;
+}
+
+.date {
+  background: var(--card);
+  padding: 13px 18px;
+  border-radius: 14px;
+  color: #827889;
+  font-size: 13px;
+}
+
+/* Dashboard Cards */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.card {
+  background: var(--card);
+  padding: 28px;
+  border-radius: 22px;
+  min-height: 190px;
+  box-shadow: 0 5px 25px rgba(64, 55, 71, 0.035);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 28px rgba(64, 55, 71, 0.07);
+}
+
+.card h2,
+.card h3 {
+  font-family: 'Poppins', sans-serif;
+  color: var(--text);
+}
+
+.card > p:first-child {
+  color: var(--purple);
+  margin-bottom: 15px;
+}
+
+.clock-card {
+  background: #EAE1F0;
+}
+
+.clock-card h2 {
+  font-size: 48px;
+  color: var(--purple);
+  margin-bottom: 8px;
+}
+
+.clock-card span {
+  font-size: 13px;
+  color: #776A82;
+}
+
+.timer-card {
+  background: #F4E7EC;
+}
+
+.timer-card h2 {
+  font-size: 42px;
+  color: #94768E;
+  margin: 12px 0;
+}
+
+.timer-card button {
+  border: none;
+  background: var(--purple);
+  color: white;
+  padding: 11px 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.timer-card button:hover {
+  background: #705B83;
+}
+
+.tasks-card h3,
+.quote-card h3 {
+  font-size: 18px;
+  margin-bottom: 22px;
+}
+
+.tasks-card p {
+  color: #827889;
+  margin: 14px 0;
+  font-size: 14px;
+}
+
+.quote-card {
+  background: #F4EDD9;
+}
+
+.quote-card p {
+  color: #81745E;
+  line-height: 1.8;
+  font-size: 15px;
+}
+
+/* Responsive Layout */
+@media (max-width: 800px) {
+  .app {
+    padding: 14px;
+    gap: 14px;
+  }
+
+  .sidebar {
+    width: 175px;
+    padding: 22px 12px;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 600px) {
+  .app {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    min-height: auto;
+    padding: 18px;
+  }
+
+  .sidebar h2 {
+    margin-bottom: 15px;
+  }
+
+  .sidebar nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .sidebar nav a {
+    padding: 9px 11px;
+    font-size: 13px;
+  }
+
+  .sidebar-note {
+    display: none;
+  }
+
+  .main-content {
+    padding: 12px 0;
+  }
+
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .card {
+    padding: 22px;
+  }
+
+  .date {
+    font-size: 12px;
+  }
+}
+
+
+.timer-controls {
+  display: flex;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.timer-controls button {
+  border: none;
+  background: var(--purple);
+  color: white;
+  padding: 11px 22px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.timer-controls button:hover {
+  background: #705B83;
+  transform: translateY(-2px);
+}
+
+.timer-controls .reset-btn {
+  background: #FFFCFA;
+  color: var(--purple);
+  border: 1px solid #E8DDF0;
+}
+
+.timer-controls .reset-btn:hover {
+  background: #E8DDF0;
+}
+
+.timer-message {
+  color: #827889;
+  font-size: 12px;
+}
+
+
+/* Task Manager */
+
+.task-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.task-heading h3 {
+  margin-bottom: 5px;
+}
+
+.task-heading span {
+  font-size: 12px;
+  color: #9A8CA2;
+}
+
+.task-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+.task-form input {
+  flex: 1;
+  min-width: 0;
+  padding: 12px 14px;
+  border: 1px solid #E8DDF0;
+  border-radius: 12px;
+  outline: none;
+  background: #F7F1EB;
+  color: var(--text);
+}
+
+.task-form input:focus {
+  border-color: var(--purple);
+}
+
+.task-form button {
+  width: 43px;
+  border: none;
+  border-radius: 12px;
+  background: var(--purple);
+  color: white;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 12px;
+  background: #F9F5F2;
+  color: var(--text);
+  font-size: 14px;
+}
+
+.task-item span {
+  flex: 1;
+  overflow-wrap: anywhere;
+}
+
+.check-btn,
+.delete-btn {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+
+.check-btn {
+  width: 23px;
+  height: 23px;
+  border: 1px solid #C6B3D2;
+  border-radius: 7px;
+  color: white;
+}
+
+.check-btn.checked {
+  background: var(--purple);
+}
+
+.task-item span.completed {
+  text-decoration: line-through;
+  color: #A99EAC;
+}
+
+.delete-btn {
+  color: #B49BAF;
+  padding: 5px;
+}
+
+.delete-btn:hover {
+  color: #C66B89;
+}
+
+.empty-message {
+  color: #9A8CA2;
+  font-size: 13px;
+  text-align: center;
+  padding: 15px 0;
+}
+
+
+/* Daily Progress Card */
+
+.progress-card {
+  background: #EAE1F0;
+}
+
+.progress-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.progress-heading h3 {
+  font-size: 18px;
+}
+
+.progress-heading span {
+  font-size: 27px;
+  font-weight: 800;
+  color: var(--purple);
+}
+
+.progress-bar {
+  width: 100%;
+  height: 12px;
+  background: #FFFCFA;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--purple);
+  border-radius: 20px;
+  transition: width 0.5s ease;
+}
+
+.progress-card p {
+  color: #827889;
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+
+.progress-message {
+  color: var(--purple);
+  font-size: 13px;
+}
+
+
+/* Motivation Card */
+
+.motivation-card {
+  background: #F4EDD9;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.motivation-icon {
+  font-size: 28px;
+  margin-bottom: 18px;
+}
+
+.motivation-label {
+  color: #9A8970;
+  font-size: 11px;
+  letter-spacing: 2px;
+  margin-bottom: 15px;
+}
+
+.motivation-card h3 {
+  font-size: 23px;
+  line-height: 1.6;
+  max-width: 340px;
+  color: #625849;
+  margin-bottom: 12px;
+}
+
+.motivation-card span {
+  color: #897B68;
+  font-size: 13px;
+}
+
+.motivation-footer {
+  margin-top: 25px;
+  font-size: 11px;
+  color: #A4947D;
+}
+
+
+/* Quick Shortcuts */
+
+.shortcuts-section {
+  margin-top: 28px;
+}
+
+.shortcuts-section > h3 {
+  font-size: 20px;
+  margin-bottom: 6px;
+}
+
+.shortcuts-subtitle {
+  color: #96899C;
+  font-size: 13px;
+  margin-bottom: 18px;
+}
+
+.shortcuts-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.shortcut-card {
+  padding: 22px;
+  border-radius: 18px;
+  min-height: 145px;
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+
+.shortcut-card:hover {
+  transform: translateY(-5px);
+}
+
+.shortcut-card svg {
+  color: #88739B;
+  margin-bottom: 15px;
+}
+
+.shortcut-card h4 {
+  color: #403747;
+  font-size: 15px;
+  margin-bottom: 6px;
+}
+
+.shortcut-card span {
+  color: #827889;
+  font-size: 12px;
+}
+
+@media (max-width: 800px) {
+  .shortcuts-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 400px) {
+  .shortcuts-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+.shortcut-card {
+  width: 100%;
+  border: none;
+  text-align: left;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.shortcut-card:focus-visible {
+  outline: 2px solid var(--purple);
+  outline-offset: 4px;
+}
+
+.shortcut-card:active {
+  transform: scale(0.97);
+}
+
+
+/* Dashboard entrance animation */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card {
+  animation: fadeUp 0.7s ease both;
+}
+
+.dashboard-grid .card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.dashboard-grid .card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.dashboard-grid .card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.dashboard-grid .card:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+.dashboard-grid .card:nth-child(5) {
+  animation-delay: 0.5s;
+}
+
+.shortcuts-section {
+  animation: fadeUp 0.8s ease both;
+  animation-delay: 0.6s;
+}
+
+
+
+/* Premium card interactions */
+
+.card {
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 32px rgba(64, 55, 71, 0.09);
+}
+
+/* Sidebar interactions */
+
+.sidebar nav a {
+  transition: all 0.3s ease;
+}
+
+.sidebar nav a:hover {
+  transform: translateX(5px);
+}
+
+/* Shortcut interactions */
+
+.shortcut-card {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.shortcut-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 22px rgba(64, 55, 71, 0.08);
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+/* Tablet Responsive Design */
+
+@media (max-width: 900px) {
+
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .main-content {
+    padding: 12px 4px;
+  }
+
+}
+
+
+/* Mobile Navigation */
+
+@media (max-width: 600px) {
+
+  .sidebar {
+    width: 100%;
+    min-height: auto;
+    padding: 18px;
+  }
+
+  .sidebar h2 {
+    margin-bottom: 18px;
+    font-size: 19px;
+  }
+
+  .sidebar nav {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .sidebar nav a {
+    text-align: center;
+    padding: 11px 8px;
+    font-size: 13px;
+  }
+
+  .sidebar-note {
+    display: none;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .header h1 {
+    font-size: clamp(20px, 5vw, 26px);
+  }
+
+  .date {
+    font-size: 12px;
+  }
+
+}
+
+
+
+/* Mobile Dashboard Card Styling */
+
+@media (max-width: 600px) {
+
+  .dashboard-grid {
+    gap: 16px;
+  }
+
+  .card {
+    padding: 20px;
+    min-height: auto;
+    border-radius: 18px;
+  }
+
+  .clock-card h2 {
+    font-size: 38px;
+  }
+
+  .timer-card h2 {
+    font-size: 34px;
+  }
+
+  .progress-heading span {
+    font-size: 23px;
+  }
+
+  .progress-bar {
+    height: 10px;
+  }
+
+  .motivation-card h3 {
+    font-size: 20px;
+  }
+
+  .tasks-card h3 {
+    font-size: 17px;
+  }
+
+}
+
+
+
+/* Responsive Quick Shortcuts */
+
+@media (max-width: 600px) {
+
+  .shortcuts-section {
+    margin-top: 22px;
+  }
+
+  .shortcuts-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .shortcut-card {
+    padding: 16px;
+    min-height: 125px;
+    border-radius: 16px;
+  }
+
+  .shortcut-card h4 {
+    font-size: 14px;
+  }
+
+  .shortcut-card span {
+    font-size: 11px;
+  }
+
+}
+
+@media (max-width: 380px) {
+
+  .shortcuts-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
+
